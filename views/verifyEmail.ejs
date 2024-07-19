@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify Your Email</title>
+    <style>
+      /* Your styles */
+    </style>
+  </head>
+  <body>
+    <p>Hi there <%= email %>,</p>
+    <p>Welcome to Trundra! We're thrilled to have you on board.</p>
+    <p>
+      At Trundra, we aim to provide you with the best experience possible. Our
+      platform is designed to help you get any wears you desire cheaper and
+      faster.
+    </p>
+    <p><b>Copy the code on the right side, and click on the left button</b></p>
+    <table>
+      <tr>
+        <td>
+          <a
+            href="<%= process.env.CLIENT_URL %>/verify-email?code=<%= verifyCode %>"
+            target="_blank"
+            >Verify Account</a
+          >
+        </td>
+        <td>
+          <div onclick="copyToClipboard()">
+            <input
+              id="code"
+              type="hidden"
+              name="code"
+              value="<%= verifyCode %>"
+            />
+            <%= verifyCode %>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <p>
+      If you have any questions, feel free to reply to this email or visit our
+      help center.
+    </p>
+    <p>We're excited to have you with us!</p>
+    <p>Best regards,<br />The Trundra Team</p>
+    <script>
+      const copyToClipboard = () => {
+        var code = document.getElementById("code").value;
+        navigator.clipboard.writeText(code);
+        alert("Verification code copied: " + code);
+      };
+    </script>
+  </body>
+</html>
